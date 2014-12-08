@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+/**
+  * Module dependencies.
+  */
+var debug = require('debug')('app:web');
+var port = 80;
+
+// app
+
+var app = require('../lib/server');
+
+// bind
+
+app.listen(port);
+
+debug('started app on port %d', port);
