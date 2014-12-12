@@ -23,4 +23,7 @@ ps:
 deps:
 	@$(MAKE) deps util config --no-print-directory -C lib/web -B
 
+ansible:
+	@ansible-playbook -i bin/ansible/inventories/production bin/ansible/playbooks/production.yml
+
 .PHONY: deploy web

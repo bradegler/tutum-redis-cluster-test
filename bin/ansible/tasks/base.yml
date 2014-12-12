@@ -1,0 +1,35 @@
+- name: INSTALL SYSTEM PACKAGES
+  apt: name={{ item }}
+  with_items:
+    - docker.io
+    - build-essential
+    - make
+    - python-pip
+    - nodejs
+    - node
+
+- name: INSTALL FIG
+  pip: name=fig
+
+- name: CLONE CODE FROM GITHUB
+  git: >
+    repo={{ REPOSITORY_URL }}
+    dest={{ APP_DIR }}
+    version={{BRANCH}}
+  sudo: no
+
+- name: UPDATE DOCKER CONF
+  template: >
+    src=../templates/docker.j2
+    dest=/etc/default/docker.io
+  register: docker_restart
+
+- name: RESTART DOCKER
+  shell: service docker.io restart
+  when: docker_restart.changed
+
+- name: LINK NODE BIN
+  shell: ln -fs /usr/bin/nodejs /usr/bin/node
+
+- name: INSTALL TD
+  shell: npm install -g tutum-deploy
