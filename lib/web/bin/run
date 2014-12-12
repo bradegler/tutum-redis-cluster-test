@@ -4,11 +4,11 @@
   * Module dependencies.
   */
 var debug = require('debug')('app:web');
-var port = 80;
+var port = 5000;
 
 // app
 
-var app = require('../lib/server');
+var app = require('../lib');
 
 // bind
 

@@ -18,8 +18,13 @@ html(lang='en')
       content=''
     )
 
-    title Redis Cluster
+    title Redis Cluster Demo
 
+    link(
+      href='/bootstrap.css'
+      rel='stylesheet'
+      media='screen'
+    )
     link(
       href='/public.css'
       rel='stylesheet'
@@ -27,3 +32,26 @@ html(lang='en')
     )
 
   body
+
+    .container
+
+      form(
+        action=''
+        method='POST'
+        role='form'
+      ) 
+        input.form-control(
+          name='value'
+          type='text'
+          placeholder='value'
+        )
+        button.btn.btn-default(
+          type='submit'
+          hidden
+        )
+
+      ul
+        for item in items
+          li
+            a(href='/completed/#{item.key}')
+              | #{item}
