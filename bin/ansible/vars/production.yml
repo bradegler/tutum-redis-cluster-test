@@ -1,5 +1,0 @@
----
-REPOSITORY_URL: git@github.com:kelonye/redis-cluster-test.git
-BRANCH: master
-HOME_DIR: /home/me
-APP_DIR: "{{ HOME_DIR }}/project"

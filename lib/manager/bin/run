@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+/**
+  * Module dependencies.
+  */
+var debug = require('debug')('app:web');
+var spawn = require('child_process').spawn;
+var replicas = process.env.REPLICAS;
+var domain = require('domain').create();
+var port = process.env.PORT;
+var app = require('../lib');
+
+// get nodes
+
+var nodes = [];
+for (var k in process.env){
+  if (/REDISCLUSTERTEST_NODE_(\d+)_PORT_6379_TCP$/.test(k)){
+    nodes.push(process.env[k]);
+  }
+}
+
+nodes = nodes
+  .map(function(node){
+    return node.replace('tcp://', '');
+  });
+
+firstRedisNode = nodes[0]; // TODO
+
+nodes = nodes.join(' ');
+
+// create replica
+
+domain.on('error', function(err) {
+  console.log(err.stack);
+});
+
+domain.run(function() {
+
+  var cmd = spawn('bash', ['-c', 'echo yes | ../redis-3.0.0-rc1/src/redis-trib.rb create --replicas '+replicas+' '+nodes]);
+  cmd.stdout.setEncoding('utf8');
+  cmd.stdout.on('data', function (data) {
+    console.log(data);
+  });
+  cmd.stderr.on('data', function (data) {
+    console.log('stderr: ' + data);
+  });
+  cmd.on('close', function (code) {
+    console.log('close %s', code);
+
+    // bind
+
+    app.listen(port);
+
+    debug('started app on port %d', port);
+
+  });
+
+});

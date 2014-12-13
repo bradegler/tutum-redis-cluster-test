@@ -1,0 +1,12 @@
+node:
+  image: tutum.co/kelonye/redis-cluster-node
+
+manager:
+  image: tutum.co/kelonye/redis-cluster-manager
+  links:
+    - node
+  environment:
+    PORT: 5000
+    REPLICAS: 1
+  ports:
+    - "5000:5000"

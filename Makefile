@@ -1,8 +1,5 @@
 OPTS=
 
-web:
-	@$(MAKE) --no-print-directory -C lib/web
-
 deploy:
 	@$(MAKE) build
 	@$(make) push
@@ -20,10 +17,4 @@ up:
 ps:
 	@$(OPTS) td ps
 
-deps:
-	@$(MAKE) deps util config --no-print-directory -C lib/web -B
-
-ansible:
-	@ansible-playbook -i bin/ansible/inventories/production bin/ansible/playbooks/production.yml
-
-.PHONY: deploy web
+.PHONY: ps up push build deploy

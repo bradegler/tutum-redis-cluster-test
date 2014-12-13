@@ -1,0 +1,15 @@
+.add-todo{
+  margin-top: 70px;
+}
+
+.todos{
+  margin-top: 20px;
+}
+
+.todos .row{
+  margin-bottom: 10px;
+}
+
+button{
+  display: none !important;
+}

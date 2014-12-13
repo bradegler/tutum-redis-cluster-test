@@ -1,5 +1,4 @@
 FROM        dockerfile/ubuntu
-ADD         . /opt
 WORKDIR     /opt
 RUN         apt-get update
 RUN         apt-get install -y make wget
@@ -9,4 +8,5 @@ RUN         rm -f 3.0.0-rc1.tar.gz
 WORKDIR     redis-3.0.0-rc1
 RUN         make
 EXPOSE      6379
-ENTRYPOINT  ["src/redis-server ./redis.conf"]
+ADD         . /opt
+CMD         src/redis-server ../redis.conf
