@@ -2,8 +2,8 @@ OPTS=
 
 deploy:
 	@$(MAKE) build
-	@$(make) push
-	@$(make) up
+	@$(MAKE) push
+	@$(MAKE) up
 
 build:
 	@$(OPTS) td build

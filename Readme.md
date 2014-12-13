@@ -1,4 +1,5 @@
-Redis cluster demo on GCE.
+[Redis cluster demo on GCE](http://4890cf56-kelonye.node.tutum.io/)
+---
 
 Running locally
 ---
@@ -24,8 +25,10 @@ Deploy using Tutum
   - TUTUM_APIKEY
   - TUTUM_REDIS_CLUSTER_TEST_NODE_UUID (the custom node uuid)
 - Install [tutum-deploy](https://github.com/kelonye/node-tutum-deploy) with:
-
-    $ npm install -g tutum-deploy
+  
+```bash
+npm install -g tutum-deploy
+```
 
 - Run `make deploy` to deploy the services
 - Go to https://dashboard.tutum.co/node/cluster/list

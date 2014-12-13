@@ -14,7 +14,7 @@ var app = require('../lib');
 
 var nodes = [];
 for (var k in process.env){
-  if (/REDISCLUSTERTEST_NODE_(\d+)_PORT_6379_TCP$/.test(k)){
+  if (/REDISCLUSTERTEST_NODE_(\d+)_PORT_6379_TCP$/.test(k) || /REDIS_CLUSTER_NODE_(\d+)_PORT_6379_TCP$/.test(k)){
     nodes.push(process.env[k]);
   }
 }

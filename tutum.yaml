@@ -2,7 +2,7 @@
 
 nodes:
 
-- uuid: "{{TUTUM_REDIS_CLUSTER_TEST_NODE_UUID}}"
+- uuid: "{{REDIS_CLUSTER_TEST_NODE_UUID}}"
 
 services:
 
@@ -27,6 +27,6 @@ services:
     PORT: 5000
     REPLICAS: 1
   require:
-    - redis
+    - redis-cluster-node
   tags:
     - gce
