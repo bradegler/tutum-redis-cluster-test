@@ -32,4 +32,4 @@ npm install -g tutum-deploy
 
 - Run `make deploy` to deploy the services
 - Go to https://dashboard.tutum.co/node/cluster/list
-- Select your new cluster and use the provided hostname to access the app
+- Select your linked node and use the provided hostname to access the app
